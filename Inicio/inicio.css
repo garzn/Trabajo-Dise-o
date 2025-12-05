@@ -1,0 +1,354 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+main {
+  flex: 1;
+  padding: 50px 80px;
+}
+
+.barra-promocional {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 0;
+  letter-spacing: 0.5px;
+}
+
+header {
+  background-color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.barra-navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 70px;
+  height: 70px;
+}
+
+.logo-tienda {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.logo-tienda img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.menu-principal ul {
+  list-style: none;
+  display: flex;
+  gap: 45px;
+}
+
+.menu-principal a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.menu-principal a:hover {
+  color: #0078ff;
+}
+
+.seccion-carrusel {
+  background: #fff;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.contenedor-carrusel {
+  position: relative;
+  width: 98%;
+  max-width: 1400px;
+  height: 580px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.imagenes-carrusel {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+/* Cada slide ocupa el 100% del contenedor */
+.imagenes-carrusel > div {
+  flex: 0 0 100%;
+  height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Imágenes e iframes rellenan el slide */
+.imagenes-carrusel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagenes-carrusel iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* SoundCloud: garantizar que el reproductor sea visible y con mínimo alto */
+.imagenes-carrusel #soundcloud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+.imagenes-carrusel #soundcloud iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+}
+
+/* Responsive: ajustar altura del carrusel en pantallas pequeñas */
+@media (max-width: 900px) {
+  .contenedor-carrusel {
+    height: 360px;
+  }
+  .imagenes-carrusel > div,
+  .imagenes-carrusel iframe {
+    height: 360px;
+  }
+  .boton-carrusel {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    padding: 10px 15px;
+  }
+  .anterior { left: 15px; }
+  .siguiente { right: 15px; }
+}
+
+@media (max-width: 480px) {
+  .contenedor-carrusel {
+    height: 240px;
+  }
+  .imagenes-carrusel > div,
+  .imagenes-carrusel iframe {
+    height: 240px;
+  }
+  .boton-carrusel {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+  .anterior { left: 10px; }
+  .siguiente { right: 10px; }
+  .indicador {
+    width: 8px;
+    height: 8px;
+  }
+  .indicadores-carrusel {
+    bottom: 10px;
+    gap: 6px;
+  }
+}
+
+.boton-carrusel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 28px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.boton-carrusel:hover {
+  background: rgba(0,0,0,0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.boton-carrusel:active {
+  background: rgba(0,0,0,0.95);
+  transform: translateY(-50%) scale(0.95);
+}
+
+.anterior { left: 20px; }
+.siguiente { right: 20px; }
+
+/* Indicadores del carrusel */
+.indicadores-carrusel {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 16;
+}
+
+.indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.indicador:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.indicador.activo {
+  background: #0078ff;
+  border-color: white;
+  box-shadow: 0 0 8px rgba(0, 120, 255, 0.6);
+}
+
+.categorias {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.categorias2{
+    margin-top: 0;
+  text-align: center;
+}
+
+.categorias h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.lista-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.categoria {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.categoria2 {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  height: 800px;
+  color: #0078ff;
+  margin: 15%;
+  margin-top: 0;
+}
+
+.categoria:hover {
+  transform: translateY(-5px);
+}
+.categoria2:hover {
+  transform: translateY(-5px);
+}
+
+.categoria img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.categoria2 img{
+  width: 85%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.categoria h3 {
+  font-size: 20px;
+  color: #0078ff;
+}
+
+footer {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  margin-top: auto;
+}
+
+.logo-piePag {
+  height: 150px;
+}
+
+.links-piePag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 2px;
+  font-size: 14px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* Estilos específicos de vídeo removidos: los iframes ahora controlados por reglas generales arriba */

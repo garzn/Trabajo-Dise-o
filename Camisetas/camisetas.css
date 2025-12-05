@@ -1,0 +1,294 @@
+/* ==== ESTILO GENERAL ==== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==== SECCIÓN DE PRODUCTOS ==== */
+main {
+  flex-grow: 1;
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 600px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-info h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.price {
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ==== RESPONSIVO ==== */
+@media (max-width: 1024px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  aside {
+    position: relative;
+    transform: none;
+    width: 100%;
+    top: 0;
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+    box-shadow: none;
+  }
+
+  main {
+    margin-left: 0;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+/* ==== IMÁGENES CON EFECTOS CREATIVOS Y OPTIMIZADOS ==== */
+.card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease, border-radius 0.4s ease;
+  border-radius: 6px;
+  image-rendering: auto; 
+  will-change: transform, filter; 
+}
+
+
+.card:hover img {
+  transform: scale(1.05) rotate(-1deg); 
+  filter: brightness(1.1) contrast(1.05) saturate(1.2);
+  border-radius: 12px; 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+}
+
+
+.card img {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==== CARRUSEL DE VÍDEOS - Estilos removidos, se usan los globales del .contenedor-carrusel ==== */
+
+.seccion-carrusel {
+  background: #fff;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.contenedor-carrusel {
+  position: relative;
+  width: 98%;
+  max-width: 1400px;
+  height: 580px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.imagenes-carrusel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+/* Cada slide ocupa el 100% del contenedor */
+.imagenes-carrusel {
+  width: 100%;
+}
+
+.imagenes-carrusel > div {
+  flex: 0 0 100%;
+  height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Imágenes e iframes rellenan el slide */
+.imagenes-carrusel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagenes-carrusel iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* SoundCloud: garantizar que el reproductor sea visible y con mínimo alto */
+.imagenes-carrusel #soundcloud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+.imagenes-carrusel #soundcloud iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+}
+
+/* Botones del carrusel */
+.boton-carrusel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 28px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.boton-carrusel:hover {
+  background: rgba(0,0,0,0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.boton-carrusel:active {
+  background: rgba(0,0,0,0.95);
+  transform: translateY(-50%) scale(0.95);
+}
+
+.anterior { left: 20px; }
+.siguiente { right: 20px; }
+
+/* Indicadores del carrusel */
+.indicadores-carrusel {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 16;
+}
+
+.indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.indicador:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.indicador.activo {
+  background: #0078ff;
+  border-color: white;
+  box-shadow: 0 0 8px rgba(0, 120, 255, 0.6);
+}
+
+/* Responsive: ajustar altura del carrusel en pantallas pequeñas */
+@media (max-width: 900px) {
+  .contenedor-carrusel {
+    height: 360px;
+  }
+  .imagenes-carrusel > div,
+  .imagenes-carrusel iframe {
+    height: 360px;
+  }
+  .boton-carrusel {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    padding: 10px 15px;
+  }
+  .anterior { left: 15px; }
+  .siguiente { right: 15px; }
+}
+
+@media (max-width: 480px) {
+  .contenedor-carrusel {
+    height: 240px;
+  }
+  .imagenes-carrusel > div,
+  .imagenes-carrusel iframe {
+    height: 240px;
+  }
+  .boton-carrusel {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+  .anterior { left: 10px; }
+  .siguiente { right: 10px; }
+  .indicador {
+    width: 8px;
+    height: 8px;
+  }
+  .indicadores-carrusel {
+    bottom: 10px;
+    gap: 6px;
+  }
+}
